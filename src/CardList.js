@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
 import Card from './Card';
+import SearchBox from './SearchBox';
 
 class CardList extends Component {
   constructor() {
     super()
     this.state = {
-      cats: []
+      cats: [],
+      searchfield: ''
     }
   }
 
+  onSearchChange = (event) => {
+    this.setState({searchfield: event.target.value});
+  }
+  
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
@@ -16,12 +22,16 @@ class CardList extends Component {
   }
 
   render() {
-    const {cats} = this.state;
+    const {cats, searchfield} = this.state;
+    const filteredCats = cats.filter(cat => {
+        return cat.name.toLowerCase().includes(searchfield.toLowerCase());
+      })
 
     return (<div className='tc'>
       <h1 className='f1'>Cat Friends</h1>
+      <SearchBox searchChange={this.onSearchChange}/>
       {
-        cats.map((user, i) => {
+        filteredCats.map((user, i) => {
           return (
             <Card
               key={cats[i].id}
