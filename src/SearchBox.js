@@ -9,7 +9,7 @@ function SearchBox({searchfield, searchChange}) {
         />
       </div>
     );
-  }
+}
   
-  export default SearchBox;
+export default SearchBox;
   

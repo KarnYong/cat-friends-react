@@ -34,10 +34,10 @@ class CardList extends Component {
         filteredCats.map((user, i) => {
           return (
             <Card
-              key={cats[i].id}
-              id={cats[i].id}
-              name= {cats[i].name}
-              email={cats[i].email}
+              key={filteredCats[i].id}
+              id={filteredCats[i].id}
+              name= {filteredCats[i].name}
+              email={filteredCats[i].email}
             />
           );
         })
